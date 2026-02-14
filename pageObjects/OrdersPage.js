@@ -1,0 +1,41 @@
+const { expect } = require('@playwright/test');
+
+class OrdersPage {
+
+    constructor(page) {
+
+        this.page = page;
+        this.ordersBtn = this.page.locator("button[routerlink='/dashboard/myorders']");
+        this.ordersTable = this.page.locator('.table-bordered');
+        this.orderRows = this.page.locator('tbody tr');
+        this.orderSummaryHeading = this.page.locator('.email-title:visible');
+        this.orderIdSummaryPage = this.page.locator('div .col-text');
+    }
+
+    async verifyOrder(orderId) {
+
+        await this.ordersBtn.click();
+    
+        await this.ordersTable.waitFor();
+    
+        const rows = this.orderRows;
+        const rowCount = await rows.count();
+        // Here, count() is playwright function and hence since an action is performed to count the number of matching elements to rows, the
+        // await keyword is must here.
+    
+        for (let i =0; i<rowCount;i++) {
+    
+            const fetchedOrderId = (await rows.nth(i).locator('th').textContent()).trim();
+    
+            if(fetchedOrderId === orderId) {
+    
+                await rows.nth(i).locator('td .btn-primary').click();
+                await this.orderSummaryHeading.waitFor();
+                expect((await this.orderIdSummaryPage.textContent()).trim()).toContain(orderId);
+                break;
+            }
+    
+        }
+    }
+}
+module.exports = { OrdersPage };

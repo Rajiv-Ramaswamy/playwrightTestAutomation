@@ -1,0 +1,23 @@
+[{
+
+    "url": "https://rahulshettyacademy.com/client/#/auth/login",
+    "username": "rajivsoiraz894@gmail.com",
+    "password": "Sashti@2412",
+    "couponCode": "rahulshettyacademy",
+    "cardName": "ZARA COAT 3",
+    "country": "India",
+    "sequentialText": "ind"
+
+},
+
+{
+
+    "url": "https://rahulshettyacademy.com/client/#/auth/login",
+    "username": "rajivsoorav@gmail.com",
+    "password": "Sashti@2412!",
+    "couponCode": "rahulshettyacademy",
+    "cardName": "ADIDAS ORIGINAL",
+    "country": "Cuba",
+    "sequentialText": "cub"
+}
+]
